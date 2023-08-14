@@ -17,31 +17,21 @@ const countModifier = (count = 0, action) => {
 
 // created store
 const countStore = createStore(countModifier);
-let count = countStore.getState();
 
-console.log(`Dispatch 이전 count 결과 : ${count}`);
+const onChange = () => {
+  // 변경된 상태값을 출력.
+  number.innerText = countStore.getState();
+};
 
-countStore.dispatch({ type: "ADD" });
+countStore.subscribe(onChange);
 
-count = countStore.getState();
+const handleAdd = () => {
+  countStore.dispatch({ type: "ADD" });
+};
 
-console.log(`Dispatch 이후 count 결과 : ${count}`);
+const handleMinus = () => {
+  countStore.dispatch({ type: "SUB" });
+};
 
-// number.innerText = count;
-
-// const updateText = () => {
-//   number.innerText = count;
-// };
-
-// const handleAdd = () => {
-//   count += 1;
-//   updateText();
-// };
-
-// const handleMinus = () => {
-//   count -= 1;
-//   updateText();
-// };
-
-// add.addEventListener("click", handleAdd);
-// minus.addEventListener("click", handleMinus);
+add.addEventListener("click", handleAdd);
+minus.addEventListener("click", handleMinus);
