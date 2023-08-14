@@ -3,16 +3,20 @@ const add = document.getElementById("add");
 const minus = document.getElementById("minus");
 const number = document.querySelector("span");
 
+const ADD = "ADD";
+const SUB = "SUB";
+
 // define reducer
 const countModifier = (count = 0, action) => {
   // ... modify state
-  if (action.type === "ADD") {
-    return count + 1;
-  } else if (action.type === "SUB") {
-    return count - 1;
+  switch (action.type) {
+    case ADD:
+      return count + 1;
+    case SUB:
+      return count - 1;
+    default:
+      return count;
   }
-
-  return count;
 };
 
 // created store
@@ -26,11 +30,11 @@ const onChange = () => {
 countStore.subscribe(onChange);
 
 const handleAdd = () => {
-  countStore.dispatch({ type: "ADD" });
+  countStore.dispatch({ type: ADD });
 };
 
 const handleMinus = () => {
-  countStore.dispatch({ type: "SUB" });
+  countStore.dispatch({ type: SUB });
 };
 
 add.addEventListener("click", handleAdd);
