@@ -21,13 +21,6 @@ const reducer = (state = [], action) => {
 
 const store = createStore(reducer);
 
-// const createToDo = (toDo) => {
-//   const li = document.createElement("li");
-
-//   li.innerText = toDo;
-//   ul.appendChild(li);
-// };
-
 const onSubmit = (event) => {
   event.preventDefault();
   const toDo = input.value;
