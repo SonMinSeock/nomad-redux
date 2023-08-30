@@ -1,41 +1,38 @@
 import { createStore } from "redux";
-const add = document.getElementById("add");
-const minus = document.getElementById("minus");
-const number = document.querySelector("span");
 
-const ADD = "ADD";
-const SUB = "SUB";
+const form = document.querySelector("form");
+const input = document.querySelector("input");
+const ul = document.querySelector("ul");
 
-// define reducer
-const countModifier = (count = 0, action) => {
-  // ... modify state
+const ADD_TODO = "ADD_TODO";
+const DELET_TODO = "DELETE_TODO";
+
+const reducer = (state = [], action) => {
+  console.log(action);
   switch (action.type) {
-    case ADD:
-      return count + 1;
-    case SUB:
-      return count - 1;
+    case ADD_TODO:
+      return [];
+    case DELET_TODO:
+      return [];
     default:
-      return count;
+      return state;
   }
 };
 
-// created store
-const countStore = createStore(countModifier);
+const store = createStore(reducer);
 
-const onChange = () => {
-  // 변경된 상태값을 출력.
-  number.innerText = countStore.getState();
+// const createToDo = (toDo) => {
+//   const li = document.createElement("li");
+
+//   li.innerText = toDo;
+//   ul.appendChild(li);
+// };
+
+const onSubmit = (event) => {
+  event.preventDefault();
+  const toDo = input.value;
+  input.value = "";
+  store.dispatch({ type: ADD_TODO, text: toDo });
 };
 
-countStore.subscribe(onChange);
-
-const handleAdd = () => {
-  countStore.dispatch({ type: ADD });
-};
-
-const handleMinus = () => {
-  countStore.dispatch({ type: SUB });
-};
-
-add.addEventListener("click", handleAdd);
-minus.addEventListener("click", handleMinus);
+form.addEventListener("submit", onSubmit);
