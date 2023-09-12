@@ -10,9 +10,11 @@ const DELETE_TODO = "DELETE_TODO";
 const reducer = (state = [], action) => {
   switch (action.type) {
     case ADD_TODO:
-      return [{ text: action.text, id: Date.now() }, ...state];
+      const createToDo = { text: action.text, id: Date.now() };
+      return [createToDo, ...state];
     case DELETE_TODO:
-      return state.filter((toDo) => toDo.id !== action.id);
+      const cleaned = state.filter((toDo) => toDo.id !== action.id);
+      return cleaned;
     default:
       return state;
   }
