@@ -5,14 +5,14 @@ const input = document.querySelector("input");
 const ul = document.querySelector("ul");
 
 const ADD_TODO = "ADD_TODO";
-const DELET_TODO = "DELETE_TODO";
+const DELETE_TODO = "DELETE_TODO";
 
 const reducer = (state = [], action) => {
   switch (action.type) {
     case ADD_TODO:
       return [{ text: action.text, id: Date.now() }, ...state];
-    case DELET_TODO:
-      return [];
+    case DELETE_TODO:
+      return state.filter((toDo) => toDo.id !== action.id);
     default:
       return state;
   }
@@ -27,10 +27,10 @@ const dispatchAddToDo = (text) => {
 };
 
 const deleteToDo = (id) => {
-  return { type: DELET_TODO, id };
+  return { type: DELETE_TODO, id };
 };
 const dispatchDeleteToDo = (event) => {
-  const deleteListId = event.target.parentNode.id;
+  const deleteListId = parseInt(event.target.parentNode.id);
 
   store.dispatch(deleteToDo(deleteListId));
 };
