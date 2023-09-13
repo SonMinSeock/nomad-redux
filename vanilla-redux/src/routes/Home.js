@@ -5,7 +5,7 @@ function Home() {
 
   const onSubmit = (event) => {
     event.preventDefault();
-    console.log(text);
+    setText("");
   };
   const onChange = (event) => {
     setText(event.target.value);
@@ -15,7 +15,7 @@ function Home() {
     <>
       <h1>ToDo</h1>
       <form onSubmit={onSubmit}>
-        <input type="text" placeholder="ex) 강아지 산책" onChange={onChange} />
+        <input type="text" placeholder="ex) 강아지 산책" onChange={onChange} value={text} />
         <input type="submit" value="Add" />
       </form>
     </>
