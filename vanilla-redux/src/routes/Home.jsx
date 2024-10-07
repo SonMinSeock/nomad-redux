@@ -19,6 +19,9 @@ function Home() {
     setText("");
   };
 
+  const onDeleteBtnClick = (id) => {
+    dispatch(actionCreators.deleteToDoAction(id));
+  };
   return (
     <>
       <h1>To Do</h1>
@@ -28,7 +31,7 @@ function Home() {
       </form>
       <ul>
         {toDos.map((toDo) => (
-          <ToDo key={toDo.id} {...toDo} />
+          <ToDo key={toDo.id} {...toDo} onDeleteBtnClick={() => onDeleteBtnClick(toDo.id)} />
         ))}
       </ul>
     </>

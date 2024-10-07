@@ -1,16 +1,11 @@
 import React from "react";
-import { useDispatch } from "react-redux";
-import { actionCreators } from "../redux/store";
+import { Link } from "react-router-dom";
 
-function ToDo({ text, id }) {
-  const dispatch = useDispatch();
-  const onClick = () => {
-    dispatch(actionCreators.deleteToDoAction(id));
-  };
+function ToDo({ text, onDeleteBtnClick, id }) {
   return (
     <li>
-      {text}
-      <button onClick={onClick}>DEL</button>
+      <Link to={`/${id}`}>{text}</Link>
+      <button onClick={onDeleteBtnClick}>DEL</button>
     </li>
   );
 }
